@@ -23,7 +23,6 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.AppCompatDelegate;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -162,21 +161,23 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
             mSearchView.setOnOpenCloseListener(new SearchView.OnOpenCloseListener() {
-                @Override
-                public void onOpen() {
-                    if (mFab != null) {
-                        mFab.hide();
-                    }
-                }
 
                 @Override
-                public void onClose() {
+                public boolean onClose() {
                     if (mFab != null) {
                         mFab.show();
                     }
+                    return false;
+                }
+
+                @Override
+                public boolean onOpen() {
+                    if (mFab != null) {
+                        mFab.hide();
+                    }
+                    return false;
                 }
             });
-
 
             final SearchAdapter searchAdapter = new SearchAdapter(this, getSuggestionsList());
             searchAdapter.setOnItemClickListener(new SearchAdapter.OnItemClickListener() {
