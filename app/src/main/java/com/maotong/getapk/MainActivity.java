@@ -340,8 +340,9 @@ public class MainActivity extends AppCompatActivity {
         for (int i = 0; i < packageInfoList.size(); i++) {
             appInfo = new AppInfo();
             PackageInfo packageInfo = packageInfoList.get(i);
+
             //获取应用名称
-            appInfo.setAppName(getApplicationName(packageInfo.packageName, mPackageManager));
+            appInfo.setAppName(getApplicationName(packageInfo.packageName, mPackageManager) + "  version code:" + packageInfo.versionCode);
             appNameArrList.add(appInfo.getAppName());
             //获取应用ICON
             appInfo.setAppIcon(packageInfo.applicationInfo.loadIcon(mPackageManager));
@@ -349,7 +350,7 @@ public class MainActivity extends AppCompatActivity {
             apkFile = new File(packageInfo.applicationInfo.sourceDir);
             appInfo.setApkFile(apkFile);
             //获取到应用大小
-            appInfo.setAppSize(((float) apkFile.length() / 1024 / 1024) + "MB");
+            appInfo.setAppSize(((int) apkFile.length() / 1024 / 1024) + "MB");
             //获取应用的更新时间
             appInfo.setAppTime(getDate(packageInfo.lastUpdateTime));
             appInfoList.add(appInfo);
