@@ -9,6 +9,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -266,6 +267,8 @@ public class MainActivity extends AppCompatActivity {
             //获取应用名称
             appInfo.setAppName(getApplicationName(packageInfo.packageName, mPackageManager) + "  version code:" + packageInfo.versionCode);
             appNameArrList.add(appInfo.getAppName());
+            Log.d(TAG, "MTMTMT getAllAppInfo: " + appInfo.getAppName());
+
             //获取应用ICON
             appInfo.setAppIcon(packageInfo.applicationInfo.loadIcon(mPackageManager));
             //获取应用的apk文件
